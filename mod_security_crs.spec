@@ -4,7 +4,7 @@
 Summary: ModSecurity Rules
 Name: mod_security_crs
 Version: 2.2.6
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: ASL 2.0
 URL: http://www.modsecurity.org/
 Group: System Environment/Daemons
@@ -83,6 +83,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.2.6-6
+- Mass rebuild 2013-12-27
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.2.6-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
