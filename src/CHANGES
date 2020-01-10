@@ -1,9 +1,73 @@
-== OWASP ModSecurity Core Rule Set (CRS) JIRA CHANGELOG ==
-* https://www.modsecurity.org/tracker/browse/CORERULES
+== OWASP ModSecurity Core Rule Set (CRS) CHANGES ==
 
+== Report Bugs/Issues to GitHub Issues Tracker ==
+* https://github.com/SpiderLabs/owasp-modsecurity-crs/issues
+
+== Version 2.2.9 - 09/30/2013 ==
+
+Security Fixes:
+
+Improvements:
+* Updated the /util directory structure
+
+
+Bug Fixes:
+* fix 950901 - word boundary added
+* modsecurity_35_bad_robots.data - gecko/25 blocks Firefox Android
+  https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/157
+
+
+== Version 2.2.8 - 06/30/2013 ==
+
+Security Fixes:
+
+Improvements:
+* Updatd the /util directory structure
+* Added scripts to check Rule ID duplicates
+* Added script to remove v2.7 actions so older ModSecurity rules will work
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/pull/43
+* Added new PHP rule (958977) to detect PHP exploits (Plesk 0-day from king cope)
+  - http://seclists.org/fulldisclosure/2013/Jun/21
+  - http://blog.spiderlabs.com/2013/06/honeypot-alert-active-exploits-attempts-for-plesk-vulnerability-.html
+
+
+Bug Fixes:
+* fix 950901 - word boundary added
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/pull/48
+* fix regex error
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/pull/44
+* Updated the Regex in 981244 to include word boundaries
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/36
+* Problem with Regression Test (Invalid use of backslash) - Rule 960911 - Test2
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/34
+* ModSecurity: No action id present within the rule - ignore_static.conf
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/17
+* "Bad robots" rule blocks all Java applets on Windows XP machines
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/16
+* duplicated rules id 981173
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/18
+
+
+== Version 2.2.7 - 12/19/2012 ==
+
+Security Fixes:
+
+Improvements:
+* Added JS Overrides file to identify successfull XSS probes 
+* Added new XSS Detection Rules from Ashar Javed (http://twitter.com/soaj1664ashar)
+  - http://jsfiddle.net/U9RmU/4/
+* Updated the SQLi Filters to add in Oracle specific functions
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/pull/7
+
+Bug Fixes:
+* Fixed Session Hijacking rules
+  - https://github.com/SpiderLabs/owasp-modsecurity-crs/pull/8
+* Fixed bug in XSS rules checking TX:PM_XSS_SCORE variable
 
 
 == Version 2.2.6 - 09/14/2012 ==
+
+Security Fixes:
 
 Improvements:
 * Started rule formatting update for better readability
@@ -23,8 +87,16 @@ Bug Fixes:
 * Changed the variable listing for many generic attack rules to exclude REQUEST_FILENAME
   https://www.modsecurity.org/tracker/browse/CORERULES-78
 
+
 == Version 2.2.5 - 06/14/2012 ==
 
+Security Fixes:
+* Updated the anomaly scoring value for rule ID 960000 to critical
+  (Identified by Qualys Vulnerability & Malware Research Labs (VMRL))
+  (https://community.qualys.com/blogs/securitylabs/2012/06/15/modsecurity-and-modsecurity-core-rule-set-multipart-bypasses)
+* Updated Content-Type check to fix possible evasion with @within
+  (Identified by Qualys Vulnerability & Malware Research Labs (VMRL))
+  (https://community.qualys.com/blogs/securitylabs/2012/06/15/modsecurity-and-modsecurity-core-rule-set-multipart-bypasses)
 
 Improvements:
 * Renamed main config file to modsecurity_crs_10_setup.conf
@@ -38,14 +110,9 @@ Improvements:
 
 Bug Fixes:
 * Added forceRequestBodyVariable action to rule ID 960904
-* Updated the anomaly scoring value for rule ID 960000 to critical
-  (Identified by Qualys Vulnerability & Malware Research Labs (VMRL))
-* Updated Content-Type check to fix possible evasion with @within
-  (Identified by Qualys Vulnerability & Malware Research Labs (VMRL))
 
 
 == Version 2.2.4 - 03/14/2012 ==
-
 
 Improvements:
 * Added Location and Set-Cookie checks to Response Splitting rule ID 950910
@@ -62,7 +129,6 @@ Bug Fixes:
 
 
 == Version 2.2.3 - 12/19/2011 ==
-
 
 Improvements:
 * Added Watcher Cookie Checks to optional_rules/modsecurity_crs_55_appication_defects.conf file

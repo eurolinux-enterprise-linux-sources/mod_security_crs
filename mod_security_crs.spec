@@ -1,18 +1,17 @@
-%global git_short 3f85c76
 %global with_extras 0%{?fedora} || 0%{?rhel} <= 6
 
 Summary: ModSecurity Rules
 Name: mod_security_crs
-Version: 2.2.6
-Release: 6%{?dist}
+Version: 2.2.9
+Release: 1%{?dist}
 License: ASL 2.0
-URL: http://www.modsecurity.org/
+URL: https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project
 Group: System Environment/Daemons
 
 # Use the following command to generate the tarball:
-# wget https://github.com/SpiderLabs/owasp-modsecurity-crs/tarball/GIT_SHORT
+# wget --content-disposition https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/2.2.9.tar.gz
 
-Source: SpiderLabs-owasp-modsecurity-crs-v%{version}-0-g%{git_short}.tar.gz
+Source: owasp-modsecurity-crs-%{version}.tar.gz
 BuildArch: noarch
 Requires: mod_security >= 2.7.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -31,7 +30,7 @@ This package provides supplementary rules for mod_security.
 %endif
 
 %prep
-%setup -q -n SpiderLabs-owasp-modsecurity-crs-%{git_short}
+%setup -q -n owasp-modsecurity-crs-%{version}
 
 %build
 
@@ -69,7 +68,7 @@ rm -rf %{buildroot}
 
 
 %files
-%doc CHANGELOG INSTALL LICENSE README.md
+%doc CHANGES INSTALL LICENSE README.md
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/activated_rules/*
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/modsecurity_crs_10_config.conf
 %{_prefix}/lib/modsecurity.d/base_rules
@@ -83,6 +82,11 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Mon Apr 04 2016 Daniel Kopecek <dkopecek@redhat.com> - 2.2.9-1
+- Rebased to version 2.2.9
+- Fixed bogus date in the changelog
+  Resolves: rhbz#1150614
+
 * Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.2.6-6
 - Mass rebuild 2013-12-27
 
@@ -122,7 +126,7 @@ rm -rf %{buildroot}
 * Wed Jun 20 2012 Peter Vrabec <pvrabec@redhat.com> 2.2.4-3
 - "extras" subpackage is not provided on RHEL
 
-* Wed May 03 2012 Peter Vrabec <pvrabec@redhat.com> 2.2.4-2
+* Thu May 03 2012 Peter Vrabec <pvrabec@redhat.com> 2.2.4-2
 - fix fedora-review issues (#816975)
 
 * Thu Apr 19 2012 Peter Vrabec <pvrabec@redhat.com> 2.2.4-1
